@@ -2,14 +2,13 @@
 <html xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extrasspringsecurity5">
 <head>
     <meta charset="utf-8">
-    <title>Welcome to CodeJava Home</title>
+    <title>Kapcsolat</title>
     <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
     <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
 <div class="container text-center">
-
     <div sec:authorize ="isAnonymous()"><a th:href="@{register}">Regisztráció</a>
         <a th:href="@{login}">Bejelentkezés</a>
         <a th:href="@{index}">Főoldal</a>
@@ -17,7 +16,6 @@
 
     <div sec:authorize="isAuthenticated()">
         <p>Jónapot: <b>[[${#request.userPrincipal.principal.fullName}]]</b></p>
-
         <form th:action="@{/logout}" method="post">
             <input type="submit" value="Sign Out" />
         </form>
@@ -25,8 +23,18 @@
         <a th:href="@{contact}">Kapcsolat</a>
         <a th:href="@{message}">Üzenetek</a>
     </div>
-    <h1>MISINA - TANYA ÉS MENHELY</h1>
+    <h1>Kapcsolat</h1>
+    <div class="container text-center">
+        <div>
+            <form th:action="@{/sendmail}" method="post">
+                <input type="email" name="email">
+                <input type="text" name="message">
+                <input type="submit" value="Üzenet küldése" />
+            </form>
+        </div>
 
+
+    </div>
 </div>
 </body>
 </html>

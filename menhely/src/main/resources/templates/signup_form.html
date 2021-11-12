@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extrasspringsecurity5">
 <head>
-    <meta charset="ISO-8859-1">
+    <meta charset="utf-8">
     <title>Sign Up - CodeJava</title>
     <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
     <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
@@ -9,52 +9,56 @@
 </head>
 <body>
 <div class="container text-center">
-    <a th:href="@{users}">List of Users</a> <a th:href="@{register}">Register</a>
-    <a th:href="@{login}">Login</a>
-    <h1>Welcome to CodeJava.net</h1>
-    <h3><a th:href="@{users}">List of Users</a></h3>
+    <div sec:authorize ="isAnonymous()"><a th:href="@{register}">Regisztráció</a>
+        <a th:href="@{login}">Bejelentkezés</a>
+        <a th:href="@{index}">Főoldal</a>
+    </div>
+
     <div sec:authorize="isAuthenticated()">
-        <h3><a th:href="@{register}">Register</a></h3><div/>
-        <div sec:authorize ="isAnonymous()"><h3><a th:href="@{login}">Login</a></h3></div>
+        <p>Jónapot: <b>[[${#request.userPrincipal.principal.fullName}]]</b></p>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out" />
+        </form>
+        <a th:href="@{index}">Főoldal</a>
+        <a th:href="@{contact}">Kapcsolat</a>
+        <a th:href="@{message}">Üzenetek</a>
     </div>
 <div class="container text-center">
-    <a th:href="@{users}">List of Users</a> <a th:href="@{register}">Register</a> <a
-        th:href="@{login}">Login</a>
     <div>
-        <h1>User Registration - Sign Up</h1>
+        <h1>Regisztráció</h1>
     </div>
     <form th:action="@{/process_register}" th:object="${user}" method="post" style="max-width:
 600px; margin: 0 auto;">
         <div class="m-3">
             <div class="form-group row">
-                <label class="col-4 col-form-label">Username: </label>
+                <label class="col-4 col-form-label">Felhasználónév: </label>
                 <div class="col-8">
                     <input type="text" th:field="*{username}" class="form-control" required />
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-4 col-form-label">Password: </label>
+                <label class="col-4 col-form-label">Jelszó: </label>
                 <div class="col-8">
                     <input type="password" th:field="*{password}" class="form-control"
                            required minlength="6" maxlength="10"/>
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-4 col-form-label">First Name: </label>
+                <label class="col-4 col-form-label">Keresztnév: </label>
                 <div class="col-8">
                     <input type="text" th:field="*{firstName}" class="form-control"
                            required minlength="2" maxlength="20"/>
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-4 col-form-label">Last Name: </label>
+                <label class="col-4 col-form-label">Vezetéknév: </label>
                 <div class="col-8">
                     <input type="text" th:field="*{lastName}" class="form-control"
                            required minlength="2" maxlength="20" />
                 </div>
             </div>
             <div>
-                <button type="submit" class="btn btn-primary">Sign Up</button>
+                <button type="submit" class="btn btn-primary">Regisztráció</button>
             </div>
         </div>
     </form>
