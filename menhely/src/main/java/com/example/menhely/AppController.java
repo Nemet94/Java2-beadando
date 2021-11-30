@@ -1,5 +1,4 @@
 package com.example.menhely;
-import org.aspectj.bridge.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -8,11 +7,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.List;
 
 @Controller
 public class AppController {
@@ -53,7 +50,7 @@ public class AppController {
     public String saveMail(@RequestParam("email") String email, @RequestParam("message") String message, ModelMap modelMap) {
         Long datetime = System.currentTimeMillis();
         Timestamp timestamp = new Timestamp(datetime);
-        Messages m = new Messages();
+        Message m = new Message();
         m.setText(message);
         m.setEmail(email);
         m.setTime(timestamp);
@@ -68,7 +65,9 @@ public class AppController {
 
 
     @GetMapping("message")
-    public String viewMessagePage() {
+    public String viewMessagePage(Model model) {
+        List<Message> messageList = mailRepository.findAll();
+        model.addAttribute("messageList",messageList);
         return "message";
     }
 
