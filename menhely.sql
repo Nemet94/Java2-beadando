@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2021. Nov 16. 21:58
+-- Létrehozás ideje: 2021. Nov 30. 19:14
 -- Kiszolgáló verziója: 10.4.14-MariaDB
 -- PHP verzió: 7.4.10
 
@@ -39,7 +39,10 @@ CREATE TABLE `messages` (
 --
 
 INSERT INTO `messages` (`id`, `email`, `text`, `time`) VALUES
-(1, 'asd@asd.hus', 'asdasdasdasd', '2021-11-15 20:07:46');
+(1, 'asd@asd.hus', 'asdasdasdasd', '2021-11-15 20:07:46'),
+(2, 'asd@asd.hus', 'qefggeaggegd', '2021-11-27 20:17:56'),
+(3, 'asd@asd.hu', 'Lorem Ipsum', '2021-11-27 22:20:07'),
+(4, 'asd@asd.hu', 'srfhxrfhsrfhbnsxdfbhn', '2021-11-30 18:11:57');
 
 -- --------------------------------------------------------
 
@@ -60,7 +63,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `first_name`, `last_name`, `password`) VALUES
-(1, 'asd', 'asd', 'asd', '$2a$10$TMpXVe1CXQtXSilisf.G4.IFLOrex2EvGbgQ0STCmu1gqYjhuZLRm');
+(1, 'asd', 'asd', 'asd', '$2a$10$TMpXVe1CXQtXSilisf.G4.IFLOrex2EvGbgQ0STCmu1gqYjhuZLRm'),
+(2, 'qwe', 'Qwe', 'Ewq', '$2a$10$oSSYN7Fw9IFS3xQFeQ/BEexeabmDcXKqip.IfnY1rV6pmbyeoz0i.');
 
 --
 -- Indexek a kiírt táblákhoz
@@ -86,13 +90,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT a táblához `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT a táblához `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
